@@ -21,8 +21,9 @@ for name in fin:
     media = int(o[1].split(',')[0])
     followed_by = int(o[2].split(',')[0])
     follows = int(o[3])
-    print(name, media, followed_by, follows, file = fout)
-    print(name, media, followed_by, follows)
+    rate = followed_by**2/(media*follows)
+    print(name, media, followed_by, follows, '    ', rate, file = fout)
+    print(name, media, followed_by, follows, '    ', rate)
 
 
 fout.close()
