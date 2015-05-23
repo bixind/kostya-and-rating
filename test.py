@@ -1,11 +1,16 @@
 from urllib.request import *
+from urllib.error import *
 
 fout = open('output.txt', 'w')
 fin = open('input.txt', 'r')
 
 for name in fin:
     name = name.split()[0]
-    a = urlopen(('https://instagram.com/' + name))
+    try:
+        a = urlopen(('https://instagram.com/' + name))
+    except HTTPError:
+        print(name, '- Wrong username or smth out of date')
+        continue
     s = str(a.read())
     b = 0
     b = s.find('"counts"')
