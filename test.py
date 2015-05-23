@@ -8,8 +8,8 @@ for name in fin:
     name = name.split()[0]
     try:
         a = urlopen(('https://instagram.com/' + name))
-    except HTTPError:
-        print(name, '- Wrong username or smth out of date')
+    except HTTPError as e:
+        print(name, '- error', e.code, '- Wrong username or smth out of date')
         continue
     s = str(a.read())
     b = 0
