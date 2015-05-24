@@ -46,7 +46,10 @@ class InstagramUser:
             self.username = None
 
     def rating(self):
-        return self.followed_by**2/(self.media*self.follows)
+        if self.followed_by == 0 or self.follows == 0 or self.media == 0:
+            return 0
+        else:
+            return self.followed_by**2/(self.media*self.follows)
 
     def relatedUsers(self):
         users = set()
@@ -60,4 +63,7 @@ class InstagramUser:
         return users
 
     def getInfo(self):
-        return (self.username, self.media, self.followed_by, self.follows, self.rating())
+        return (self.username, self.media, self.followed_by, self.follows, self.rating(),'\n')
+
+    def getOnlyRate(self):
+        return (self.username, "%.3g"%(self.rating()),'\n')
