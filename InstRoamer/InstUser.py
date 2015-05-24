@@ -25,10 +25,10 @@ class InstagramUser:
                     i += 1
                 r = i
                 self.info = s[l + 1:r - 1]
-                b = self.info.find('counts')
-                l = self.info.find('{', b)
-                r = self.info.find('}', b)
-                s = self.info[l + 1: r]
+                b = s.find('counts')
+                l = s.find('{', b)
+                r = s.find('}', b)
+                s = s[l + 1: r]
                 p = []
                 for st in s.split(','):
                     p.append(int(st.split(':')[1]))
