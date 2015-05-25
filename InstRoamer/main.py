@@ -14,6 +14,8 @@ with open('usernames.txt', 'r') as fin:
         for i in user.getInfo():
             print(i, end = ' ')
             print(i, end = ' ', file = fout)
+        print()
+        print(file = fout)
 
         for i in user.getOnlyRate():
              print(i, end = ' ', file = frating)
