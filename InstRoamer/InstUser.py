@@ -66,4 +66,4 @@ class InstagramUser:
         return (self.username, self.media, self.followed_by, self.follows, self.rating())
 
     def getOnlyRate(self):
-        return (self.username, "%.3g"%(self.rating()),'\n')
+        return (self.username, "%.3g"%(self.rating()))
