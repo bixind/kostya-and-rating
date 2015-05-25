@@ -39,8 +39,8 @@ def analyse():
                 output.insert('0.0', 'Error '+ name + '\n')
                 continue
             output_str = ''
-            for i in user.getInfo():
-                output_str += str(i) + ' '
+            for i in user.getOnlyRate():
+                output_str += str(i) + (20-len(user.username))*' '
             output.insert('0.0', output_str + '\n')
                 #print(i, end = ' ', file = fout)
             #print(file = fout)
