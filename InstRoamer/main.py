@@ -3,7 +3,7 @@ from datetime import *
 d=datetime.today()
 
 fout = open(d.strftime('%y_%m_%d')+'.txt', 'w')
-frating = open('rating.txt','w')
+rated_users =[]
 with open('usernames.txt', 'r') as fin:
     for name in fin:
         name = name.split()[0].lower()
@@ -16,7 +16,10 @@ with open('usernames.txt', 'r') as fin:
             print(i, end = ' ', file = fout)
         print()
         print(file = fout)
-
-        for i in user.getOnlyRate():
-             print(i, end = ' ', file = frating)
-        print(file = frating)
+        rated_users.append(user.getOnlyRate())
+        
+rated_users.sort(key = lambda userinfo: userinfo[1])
+with open('rating.txt','w') as frating:
+    for sorted_user in rated_users:
+        print(sorted_user[0], sorted_user[1], file = frating)
+fout.close()
