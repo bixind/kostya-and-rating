@@ -6,7 +6,7 @@ fout = open(d.strftime('%y_%m_%d')+'.txt', 'w')
 frating = open('rating.txt','w')
 with open('usernames.txt', 'r') as fin:
     for name in fin:
-        name = name.split()[0]
+        name = name.split()[0].lower()
         user = InstagramUser(name)
         if user.username is None:
             print('Error', name)
@@ -14,10 +14,9 @@ with open('usernames.txt', 'r') as fin:
         for i in user.getInfo():
             print(i, end = ' ')
             print(i, end = ' ', file = fout)
-            print()
-            print(file = fout)
+        print()
+        print(file = fout)
 
         for i in user.getOnlyRate():
              print(i, end = ' ', file = frating)
-
-        print()
+        print(file = frating)
