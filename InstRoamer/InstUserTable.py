@@ -23,7 +23,7 @@ class UserTable:
             self.show_slaves()
 
         def move(e):
-            if e.keysym == 'Down':
+            if e.keysym == 'Up':
                 self.dy = self.dy + 20
             else:
                 self.dy = self.dy - 20
