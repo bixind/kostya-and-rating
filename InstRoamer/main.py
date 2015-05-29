@@ -17,28 +17,19 @@ def analyse():
         for name in fin:
             name = name.split()[0].lower()
             root.update()
-            user = InstagramUser(name)
+            table.add_user(name)
             root.update()
-            if user.username is None:
-                print('Error', name)
-                continue
-            for i in user.getInfo():
+            for i in table.users[table.users.__len__() - 1].getInfo():
                 print(i, end = ' ')
             print()
-            rated_users.append(user.getOnlyRate())
-            table.add_user(user)
             table.show_slaves()
-
-    rated_users.sort(key = lambda userinfo: userinfo[1])
-    with open('rating.txt','w') as frating:
-        for sorted_user in rated_users:
-            print(sorted_user[0], sorted_user[1], file = frating)
-
     waitLabel.pack_forget()
+    errorCountLabel['text'] = 'Errors: ' + str(table.errorCount)
+    errorCountLabel.pack(side = 'top')
     sortButton.pack(side = 'top')
 
-
 startButton = Button(root, text = 'Start!', command = analyse)
+errorCountLabel = Label(root)
 waitLabel = Label(root, text = 'Wait')
 greetingLabel.pack(side = 'top')
 startButton.pack(side = 'top')
