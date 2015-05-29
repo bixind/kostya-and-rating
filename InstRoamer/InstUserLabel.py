@@ -1,18 +1,15 @@
 from tkinter import *
 from InstUser import *
 
-class UserLabel:
-    def __init__(self, instUser, parent = None):
-        if (parent):
-            self.mainframe = Frame(parent, width = 400, height = 50, bg = 'dark grey')
-        else:
-            self.mainframe = Frame(width = 400, height = 50, bg = 'dark grey')
-        self.instUser = instUser
-        self.nameLabel = Label(self.mainframe, text = self.instUser.username, bg = 'dark grey', fg = 'cyan')
-        self.mediaLabel = Label(self.mainframe, text = 'Publications:\n' + str(self.instUser.media), bg = 'dark grey')
-        self.followed_byLabel = Label(self.mainframe, text = 'Followers:\n' + str(self.instUser.followed_by), bg = 'dark grey')
-        self.followsLabel = Label(self.mainframe, text = 'Subscribers:\n' + str(self.instUser.follows), bg = 'dark grey')
-        self.ratingLabel = Label(self.mainframe, text = 'Rating:\n' + "%.3g"%self.instUser.rating(), bg = 'dark grey')
+class UserLabel(Frame, InstagramUser):
+    def __init__(self, name, master = None):
+        InstagramUser.__init__(self, name)
+        Frame.__init__(self, master = master, width = 400, height = 50, bg = 'dark grey')
+        self.nameLabel = Label(self, text = self.username, bg = 'dark grey', fg = 'cyan')
+        self.mediaLabel = Label(self, text = 'Publications:\n' + str(self.media), bg = 'dark grey')
+        self.followed_byLabel = Label(self, text = 'Followers:\n' + str(self.followed_by), bg = 'dark grey')
+        self.followsLabel = Label(self, text = 'Subscribers:\n' + str(self.follows), bg = 'dark grey')
+        self.ratingLabel = Label(self, text = 'Rating:\n' + "%.3g"%self.rating(), bg = 'dark grey')
 
     def show_slaves(self):
         self.nameLabel.place(x = 10, y = 14)
@@ -22,15 +19,12 @@ class UserLabel:
         self.ratingLabel.place(relx = 1, x = -60, y = 7)
 
     def place(self, **kw):
-        self.mainframe.place(kw)
+        Frame.place(self, kw)
         self.show_slaves()
 
     def pack(self, **kw):
-        self.mainframe.pack(kw)
+        Frame.pack(self, kw)
         self.show_slaves()
-
-    def place_forget(self):
-        self.mainframe.place_forget()
 
     def info(self):
         return self.username.configure()
