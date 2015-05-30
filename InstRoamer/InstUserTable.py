@@ -2,6 +2,10 @@ from InstUserLabel import *
 from tkinter import *
 
 class UserTable(Frame):
+    def add_label(self, userLabel):
+        self.users.append(userLabel)
+        self.show_slaves()
+
     def add_user(self, name):
         try:
             userLabel = UserLabel(name = name, master = self)
@@ -27,10 +31,21 @@ class UserTable(Frame):
             self.show_slaves()
 
         def move(e):
+            shift = 0
+            print(e.keysym)
             if e.keysym == 'Up':
-                self.dy = self.dy + 20
-            else:
-                self.dy = self.dy - 20
+                shift = self.dy + 20
+            elif e.keysym == 'Down':
+                shift = self.dy - 20
+            elif e.keysym == 'Home':
+                shift = 0
+            elif e.keysym =='End':
+                shift = -self.users.__len__()*60 + self.height - 10
+            elif e.keysym == 'Prior':
+                shift = self.dy + self.height
+            elif e.keysym == 'Next':
+                shift = self.dy - self.height
+            self.dy = shift
             self.dy = min(self.dy, 0)
             self.dy = max(self.dy, -self.users.__len__()*60 + self.height - 10)
             if (self.users.__len__()*60 < self.height):
@@ -41,6 +56,10 @@ class UserTable(Frame):
         self.bind('<MouseWheel>', scroll)
         self.bind('<Up>', move)
         self.bind('<Down>', move)
+        self.bind('<End>', move)
+        self.bind('<Home>', move)
+        self.bind('<Prior>', move)
+        self.bind('<Next>', move)
 
     def show_slaves(self):
         num = 0
