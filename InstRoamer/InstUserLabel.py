@@ -8,7 +8,7 @@ class UserLabel(Frame, InstagramUser):
         self.nameLabel = Label(self, text = self.username, bg = 'dark grey', fg = 'cyan')
         self.mediaLabel = Label(self, text = 'Publications:\n' + str(self.media), bg = 'dark grey')
         self.followed_byLabel = Label(self, text = 'Followers:\n' + str(self.followed_by), bg = 'dark grey')
-        self.followsLabel = Label(self, text = 'Subscribers:\n' + str(self.follows), bg = 'dark grey')
+        self.followsLabel = Label(self, text = 'Follows:\n' + str(self.follows), bg = 'dark grey')
         self.ratingLabel = Label(self, text = 'Rating:\n' + "%.3g"%self.rating(), bg = 'dark grey')
 
     def show_slaves(self):
